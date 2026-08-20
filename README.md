@@ -18,16 +18,16 @@ npm run preview    # serve the production build locally
 
 ## Deploying to GitHub Pages
 
-This is configured as a **user/org page** (`https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io/`), served from the domain root, so `vite.config.ts` sets `base: '/'`. If you ever move this to a project page instead (`username.github.io/repo-name`), change `base` to `'/repo-name/'`.
+This is configured as a **project page** at `https://ganesh-2134.github.io/Ganesh-Portfolio.github.io/`, so `vite.config.ts` sets `base: '/Ganesh-Portfolio.github.io/'`.
 
 ### One-time repo setup
 
 ```bash
 git remote -v
 # if origin points anywhere other than the repo below, fix it:
-git remote set-url origin https://github.com/Ganesh-2134/Ganesh-2134.github.io.git
+git remote set-url origin https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io.git
 # if there is no origin yet:
-git remote add origin https://github.com/Ganesh-2134/Ganesh-2134.github.io.git
+git remote add origin https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io.git
 ```
 
 ### Option A — push source, build with GitHub Actions (recommended)
@@ -47,16 +47,16 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment
 ```
 
@@ -75,10 +75,10 @@ Then in **Settings → Pages**, set Source to **Deploy from a branch**, branch `
 
 ### Verifying after deploy
 
-- `https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io/` loads the hero section
-- `/Ganesh_M_Resume.pdf` downloads correctly
+- `https://ganesh-2134.github.io/Ganesh-Portfolio.github.io/` loads the hero section
+- `/Ganesh-Portfolio.github.io/Ganesh_M_Resume.pdf` downloads correctly
 - Theme toggle persists on reload
-- `/robots.txt` and `/sitemap.xml` resolve
+- `/Ganesh-Portfolio.github.io/robots.txt` and `/Ganesh-Portfolio.github.io/sitemap.xml` resolve
 
 ## Stack
 

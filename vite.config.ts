@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 // a project page (username.github.io/repo-name), base would need to become
 // "/repo-name/" instead.
 export default defineConfig({
-  base: '/',
+  base: '/Ganesh-Portfolio.github.io/',
   plugins: [react()],
   build: {
     outDir: 'dist',
