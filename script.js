@@ -1,13 +1,10 @@
-const toggle = document.querySelector('.theme-toggle');
-const storedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  toggle.innerHTML = `<span aria-hidden="true">${theme === 'dark' ? '☾' : '☼'}</span>`;
-  localStorage.setItem('theme', theme);
-}
-
-setTheme(storedTheme || (prefersDark ? 'dark' : 'light'));
-toggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
 document.querySelector('#year').textContent = new Date().getFullYear();
+const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const countObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (!entry.isIntersecting || entry.target.dataset.counted) return; entry.target.dataset.counted = 'true'; const target = +entry.target.dataset.target, prefix = entry.target.dataset.prefix || '', suffix = entry.target.dataset.suffix || '', start = performance.now(); const tick = now => { const val = Math.min(target, Math.round((now - start) / 1100 * target)); entry.target.textContent = prefix + val + suffix; if (val < target) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }), { threshold: .5 });
+document.querySelectorAll('.metric-number').forEach(el => countObserver.observe(el));
+const glow = document.querySelector('.cursor-glow'); window.addEventListener('pointermove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+const card = document.querySelector('.deploy-card'), pipeline = document.querySelector('.pipeline'), toast = document.querySelector('.deploy-toast'); let dragging = false, startX, initialLeft;
+card.addEventListener('pointerdown', e => { dragging = true; startX = e.clientX; initialLeft = card.offsetLeft; card.setPointerCapture(e.pointerId); });
+card.addEventListener('pointermove', e => { if (!dragging) return; const max = pipeline.clientWidth - card.offsetWidth - 18; card.style.left = Math.max(18, Math.min(max, initialLeft + e.clientX - startX)) + 'px'; });
+card.addEventListener('pointerup', () => { if (!dragging) return; dragging = false; const complete = card.offsetLeft > pipeline.clientWidth * .58; card.style.left = complete ? `calc(100% - ${card.offsetWidth + 18}px)` : '10%'; toast.classList.toggle('show', complete); card.querySelector('small').textContent = complete ? 'Released ✓' : 'Drag me →'; });
