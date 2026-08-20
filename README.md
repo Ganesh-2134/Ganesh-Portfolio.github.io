@@ -18,7 +18,7 @@ npm run preview    # serve the production build locally
 
 ## Deploying to GitHub Pages
 
-This is configured as a **user/org page** (`https://ganesh-2134.github.io/`), served from the domain root, so `vite.config.ts` sets `base: '/'`. If you ever move this to a project page instead (`username.github.io/repo-name`), change `base` to `'/repo-name/'`.
+This is configured as a **user/org page** (`https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io/`), served from the domain root, so `vite.config.ts` sets `base: '/'`. If you ever move this to a project page instead (`username.github.io/repo-name`), change `base` to `'/repo-name/'`.
 
 ### One-time repo setup
 
@@ -75,7 +75,7 @@ Then in **Settings → Pages**, set Source to **Deploy from a branch**, branch `
 
 ### Verifying after deploy
 
-- `https://ganesh-2134.github.io/` loads the hero section
+- `https://github.com/Ganesh-2134/Ganesh-Portfolio.github.io/` loads the hero section
 - `/Ganesh_M_Resume.pdf` downloads correctly
 - Theme toggle persists on reload
 - `/robots.txt` and `/sitemap.xml` resolve
