@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/Ganesh-2134/Ganesh-2134.github.io.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
